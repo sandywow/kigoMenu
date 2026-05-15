@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>後台設定 — 享·奇果</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400&family=Noto+Serif+TC:wght@300;400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F7F3EC; --parchment: #EDE5D8; --beige: #D9CFC0;
+      --caramel: #8B5E3C; --caramel-lt: #B8845A;
+      --ink: #1E1609; --ink-soft: #4A3A28; --ink-faint: #7A6850;
+      --white: #FFFCF7; --danger: #b94040;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Noto Serif TC', serif;
+      font-size: 14px;
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+
+    /* ── Header ── */
+    .admin-header {
+      background: var(--caramel);
+      color: var(--cream);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(44,36,22,0.25);
+    }
+    .admin-header-left { display: flex; align-items: center; gap: 14px; }
+    .admin-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      letter-spacing: 0.18em;
+    }
+    .preview-link {
+      font-size: 12px;
+      color: rgba(247,243,236,0.7);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      border: 1px solid rgba(247,243,236,0.3);
+      padding: 4px 10px;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .preview-link:hover { color: var(--cream); border-color: rgba(247,243,236,0.7); }
+    .btn-export {
+      background: transparent;
+      color: rgba(247,243,236,0.85);
+      border: 1px solid rgba(247,243,236,0.4);
+      padding: 10px 18px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .btn-export:hover { background: rgba(247,243,236,0.12); border-color: rgba(247,243,236,0.8); color: var(--cream); }
+    .btn-save {
+      background: var(--cream);
+      color: var(--caramel);
+      border: none;
+      padding: 10px 22px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.3s;
+    }
+    .btn-save:hover { background: var(--parchment); }
+    .btn-save:active { transform: scale(0.98); }
+
+    /* ── Main tabs ── */
+    .admin-tabs {
+      display: flex;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--beige);
+    }
+    .admin-tab {
+      flex: 1;
+      padding: 13px 6px;
+      border: none;
+      background: none;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 13px;
+      color: var(--ink-faint);
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      border-bottom: 2px solid transparent;
+      transition: all 0.25s;
+    }
+    .admin-tab.active {
+      color: var(--caramel);
+      border-bottom-color: var(--caramel);
+      background: var(--cream);
+    }
+
+    /* ── Panels ── */
+    .admin-panel { display: none; padding: 20px 16px; }
+    .admin-panel.active { display: block; }
+
+    /* ── Section card ── */
+    .section-card {
+      background: var(--white);
+      border: 1px solid var(--beige);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .section-card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      padding: 12px 18px;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--beige);
+    }
+    .section-fields {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* ── Form fields ── */
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label {
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.14em;
+    }
+    .hint { font-size: 10px; color: var(--ink-faint); opacity: 0.65; }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--beige);
+      border-radius: 5px;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Noto Serif TC', serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.25s;
+      appearance: none;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--caramel-lt);
+      background: var(--white);
+    }
+    .field textarea { resize: vertical; min-height: 68px; line-height: 1.65; }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6850' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+    .field-row { display: flex; gap: 10px; }
+    .field-row .field { flex: 1; min-width: 0; }
+
+    /* ── Toggle ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px 0;
+    }
+    .toggle-label { font-size: 13px; color: var(--ink-soft); }
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: var(--beige);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle-track::before {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      left: 3px; top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    .toggle input:checked ~ .toggle-track { background: var(--caramel); }
+    .toggle input:checked ~ .toggle-track::before { transform: translateX(20px); }
+
+    /* ── Category sub-tabs ── */
+    .cat-tabs {
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--beige);
+      margin-bottom: 18px;
+      scrollbar-width: none;
+    }
+    .cat-tabs::-webkit-scrollbar { display: none; }
+    .cat-tab {
+      padding: 10px 18px;
+      border: none;
+      background: none;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 13px;
+      color: var(--ink-faint);
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.25s;
+      flex-shrink: 0;
+    }
+    .cat-tab.active { color: var(--caramel); border-bottom-color: var(--caramel); }
+
+    /* ── Menu item card ── */
+    .item-card {
+      background: var(--white);
+      border: 1px solid var(--beige);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .item-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 16px;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--beige);
+      cursor: pointer;
+      user-select: none;
+    }
+    .item-card-name { font-size: 14px; color: var(--ink-soft); }
+    .item-card-actions { display: flex; gap: 8px; align-items: center; }
+    .item-chevron {
+      font-size: 10px;
+      color: var(--ink-faint);
+      transition: transform 0.3s;
+    }
+    .item-card.collapsed .item-chevron { transform: rotate(-90deg); }
+    .item-card.collapsed .item-fields { display: none; }
+    .item-fields { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+    .btn-remove {
+      background: none;
+      border: 1px solid var(--beige);
+      color: var(--ink-faint);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Noto Serif TC', serif;
+      letter-spacing: 0.05em;
+    }
+    .btn-remove:hover { border-color: var(--danger); color: var(--danger); }
+
+    /* ── Add button ── */
+    .btn-add {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border: 2px dashed var(--beige);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--ink-faint);
+      font-family: 'Noto Serif TC', serif;
+      font-size: 13px;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: all 0.25s;
+      margin-top: 4px;
+    }
+    .btn-add:hover { border-color: var(--caramel-lt); color: var(--caramel); background: rgba(139,94,60,0.04); }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: var(--ink-soft);
+      color: var(--cream);
+      padding: 13px 26px;
+      border-radius: 6px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 999;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(44,36,22,0.25);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── Config Modal ── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30,22,9,0.55);
+      z-index: 200;
+      backdrop-filter: blur(2px);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      width: min(92vw, 640px);
+      height: min(80vh, 600px);
+      background: var(--white);
+      border-radius: 12px;
+      z-index: 201;
+      box-shadow: 0 24px 60px rgba(30,22,9,0.3);
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .modal-backdrop.open, .modal.open { display: flex; }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--beige);
+      flex-shrink: 0;
+    }
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      color: var(--caramel);
+    }
+    .modal-copy-btn {
+      background: var(--caramel);
+      color: var(--cream);
+      border: none;
+      padding: 8px 18px;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .modal-copy-btn:hover { background: var(--ink-soft); }
+    .modal-copy-btn.copied { background: #5a8a5a; }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: var(--ink-faint);
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-hint {
+      padding: 10px 20px 6px;
+      font-size: 12px;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+    }
+    .modal-textarea {
+      flex: 1;
+      width: 100%;
+      border: none;
+      outline: none;
+      resize: none;
+      padding: 12px 20px 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      background: var(--cream);
+      overflow-y: auto;
+    }
+
+    /* ── Reset btn ── */
+    .btn-reset {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--beige);
+      border-radius: 5px;
+      background: none;
+      color: var(--ink-faint);
+      font-family: 'Noto Serif TC', serif;
+      font-size: 13px;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: all 0.25s;
+    }
+    .btn-reset:hover { border-color: var(--danger); color: var(--danger); }
+
+    /* ── Section title row for other tab ── */
+    .key-chip {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--caramel);
+      letter-spacing: 0.2em;
+      border: 1px solid rgba(139,94,60,0.25);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .other-group {
+      border-bottom: 1px solid var(--parchment);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+    .other-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ Header ═══ -->
+<header class="admin-header">
+  <div class="admin-header-left">
+    <div class="admin-title">◆ 奇果後台</div>
+    <a class="preview-link" href="index.html" target="_blank">預覽首頁 ↗</a>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button class="btn-export" onclick="openConfigModal()">複製 config.js</button>
+    <button class="btn-save" onclick="saveAll()">儲存設定</button>
+  </div>
+</header>
+
+<!-- ═══ Main tabs ═══ -->
+<div class="admin-tabs">
+  <button class="admin-tab active" onclick="switchPanel('landing', this)">首頁設定</button>
+  <button class="admin-tab" onclick="switchPanel('menu', this)">菜單品項</button>
+  <button class="admin-tab" onclick="switchPanel('other', this)">其他設定</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PANEL: 首頁設定
+═══════════════════════════════════ -->
+<div class="admin-panel active" id="panel-landing">
+
+  <div class="section-card">
+    <div class="section-card-title">店家資訊</div>
+    <div class="section-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>店名（英文）</label>
+          <input type="text" id="ld-cafeName">
+        </div>
+        <div class="field">
+          <label>店名（中文）</label>
+          <input type="text" id="ld-cafeSub">
+        </div>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">顯示今日日期</span>
+        <label class="toggle">
+          <input type="checkbox" id="ld-showDate">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="field">
+        <label>季節標籤（日期旁小字）</label>
+        <input type="text" id="ld-dateSeasonLabel" placeholder="Spring Menu">
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">主視覺</div>
+    <div class="section-fields">
+      <div class="field">
+        <label>圖片網址 <span class="hint">（空白 = 顯示預設插圖）</span></label>
+        <input type="text" id="ld-heroImage" placeholder="留空則顯示預設插圖">
+      </div>
+      <div class="field">
+        <label>右上角標籤</label>
+        <input type="text" id="ld-heroBadge" placeholder="當季限定">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>主標題</label>
+          <input type="text" id="ld-heroTitle">
+        </div>
+        <div class="field">
+          <label>副標題</label>
+          <input type="text" id="ld-heroSubtitle">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">詩句區塊</div>
+    <div class="section-fields">
+      <div class="field">
+        <label>詩句</label>
+        <input type="text" id="ld-tagline">
+      </div>
+      <div class="field">
+        <label>英文小字</label>
+        <input type="text" id="ld-taglineJp">
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">今日推薦卡</div>
+    <div class="section-fields">
+      <div class="field">
+        <label>卡片標題 <span class="hint">（空白 = 隱藏整張卡）</span></label>
+        <input type="text" id="ld-cardLabel" placeholder="今日推薦">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>品名</label>
+          <input type="text" id="ld-cardName">
+        </div>
+        <div class="field">
+          <label>副品名</label>
+          <input type="text" id="ld-cardNameJp">
+        </div>
+      </div>
+      <div class="field">
+        <label>說明文字</label>
+        <input type="text" id="ld-cardDesc">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>價格</label>
+          <input type="text" id="ld-cardPrice" placeholder="NT$100">
+        </div>
+        <div class="field">
+          <label>標籤</label>
+          <input type="text" id="ld-cardTag" placeholder="限定">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">Banner 海報</div>
+    <div class="section-fields">
+      <div class="field">
+        <label>Banner 標題 <span class="hint">（空白 = 不顯示標題）</span></label>
+        <input type="text" id="ld-bannerLabel">
+      </div>
+      <div class="field">
+        <label>圖片網址 <span class="hint">（空白 = 顯示佔位框或隱藏）</span></label>
+        <input type="text" id="ld-bannerImage" placeholder="貼上圖片網址">
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">無圖時顯示灰色佔位框</span>
+        <label class="toggle">
+          <input type="checkbox" id="ld-bannerPlaceholder">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">CTA 按鈕</div>
+    <div class="section-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>按鈕文字</label>
+          <input type="text" id="ld-ctaButton" placeholder="今日菜單">
+        </div>
+        <div class="field">
+          <label>按鈕下方提示</label>
+          <input type="text" id="ld-ctaHint" placeholder="瀏覽全品項">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">頁腳</div>
+    <div class="section-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>左側文字</label>
+          <input type="text" id="ld-footerLeft">
+        </div>
+        <div class="field">
+          <label>右側文字</label>
+          <input type="text" id="ld-footerRight">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">菜單頁標題</div>
+    <div class="section-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>標題</label>
+          <input type="text" id="ld-menuTitle">
+        </div>
+        <div class="field">
+          <label>副標（如季節）</label>
+          <input type="text" id="ld-menuSubtitle">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════
+     PANEL: 菜單品項
+═══════════════════════════════════ -->
+<div class="admin-panel" id="panel-menu">
+  <div class="cat-tabs" id="cat-tabs"></div>
+  <div id="menu-editor"></div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PANEL: 其他設定
+═══════════════════════════════════ -->
+<div class="admin-panel" id="panel-other">
+
+  <div class="section-card">
+    <div class="section-card-title">分頁標籤名稱</div>
+    <div class="section-fields" id="tabs-editor"></div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">各分頁標題</div>
+    <div class="section-fields" id="section-titles-editor"></div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-card-title">重置設定</div>
+    <div class="section-fields">
+      <p style="font-size:12px;color:var(--ink-faint);line-height:1.8;letter-spacing:0.05em">清除後台所有儲存，恢復 config.js 原始預設值。</p>
+      <button class="btn-reset" onclick="resetConfig()">清除所有儲存，恢復預設值</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ Config Modal ═══ -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="closeConfigModal()"></div>
+<div class="modal" id="config-modal">
+  <div class="modal-header">
+    <div class="modal-title">config.js</div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="modal-copy-btn" id="copy-btn" onclick="copyConfig()">複製全部</button>
+      <button class="modal-close" onclick="closeConfigModal()">✕</button>
+    </div>
+  </div>
+  <p class="modal-hint">複製後貼上覆蓋 config.js 檔案即可永久生效</p>
+  <textarea class="modal-textarea" id="config-output" readonly spellcheck="false"></textarea>
+</div>
+
+<div class="toast" id="toast">已儲存</div>
+
+<script src="config.js"></script>
+<script>
+// ─────────────────────────────────────
+//  State
+// ─────────────────────────────────────
+let state = {};
+
+function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
+function ve(v)        { return v == null ? '' : v; }        // value or empty
+function ne(v)        { const s = String(v).trim(); return s === '' ? null : s; } // null if empty
+
+function loadState() {
+  const defaults = {
+    menuData:      deepClone(menuData),
+    landingData:   deepClone(landingData),
+    tabs:          deepClone(tabs),
+    sectionTitles: deepClone(sectionTitles)
+  };
+  const stored = localStorage.getItem('kigoMenuConfig');
+  if (stored) {
+    try {
+      const c = JSON.parse(stored);
+      state = {
+        menuData:      c.menuData      || defaults.menuData,
+        landingData:   Object.assign({}, defaults.landingData, c.landingData || {}),
+        tabs:          c.tabs          || defaults.tabs,
+        sectionTitles: Object.assign({}, defaults.sectionTitles, c.sectionTitles || {})
+      };
+      return;
+    } catch(e) {}
+  }
+  state = defaults;
+}
+
+// ─────────────────────────────────────
+//  Panel switching
+// ─────────────────────────────────────
+function switchPanel(name, btn) {
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─────────────────────────────────────
+//  Landing: populate & read
+// ─────────────────────────────────────
+function populateLanding() {
+  const ld = state.landingData;
+  const textFields = [
+    'cafeName','cafeSub','dateSeasonLabel','heroImage','heroBadge',
+    'heroTitle','heroSubtitle','tagline','taglineJp',
+    'cardLabel','cardName','cardNameJp','cardDesc','cardPrice','cardTag',
+    'bannerLabel','bannerImage','ctaButton','ctaHint',
+    'footerLeft','footerRight','menuTitle','menuSubtitle'
+  ];
+  textFields.forEach(k => {
+    const el = document.getElementById('ld-' + k);
+    if (el) el.value = ve(ld[k]);
+  });
+  document.getElementById('ld-showDate').checked        = !!ld.showDate;
+  document.getElementById('ld-bannerPlaceholder').checked = !!ld.bannerPlaceholder;
+}
+
+function readLanding() {
+  const t = id => ne(document.getElementById('ld-' + id).value);
+  return {
+    cafeName:        t('cafeName'),
+    cafeSub:         t('cafeSub'),
+    showDate:        document.getElementById('ld-showDate').checked,
+    dateSeasonLabel: t('dateSeasonLabel'),
+    heroImage:       t('heroImage'),
+    heroBadge:       t('heroBadge'),
+    heroTitle:       t('heroTitle'),
+    heroSubtitle:    t('heroSubtitle'),
+    tagline:         t('tagline'),
+    taglineJp:       t('taglineJp'),
+    cardLabel:       t('cardLabel'),
+    cardName:        t('cardName'),
+    cardNameJp:      t('cardNameJp'),
+    cardDesc:        t('cardDesc'),
+    cardPrice:       t('cardPrice'),
+    cardTag:         t('cardTag'),
+    bannerLabel:     t('bannerLabel'),
+    bannerImage:     t('bannerImage'),
+    bannerAlt:       state.landingData.bannerAlt || '當季推薦海報',
+    bannerPlaceholder: document.getElementById('ld-bannerPlaceholder').checked,
+    ctaButton:       t('ctaButton'),
+    ctaHint:         t('ctaHint'),
+    footerLeft:      t('footerLeft'),
+    footerRight:     t('footerRight'),
+    menuTitle:       t('menuTitle'),
+    menuSubtitle:    t('menuSubtitle'),
+  };
+}
+
+// ─────────────────────────────────────
+//  Menu editor
+// ─────────────────────────────────────
+const TEMP_CATS = ['coffee', 'tea', 'noncafe'];
+let currentCat = null;
+
+function buildCatTabs() {
+  const bar = document.getElementById('cat-tabs');
+  bar.innerHTML = '';
+  state.tabs.forEach((tab, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-tab' + (i === 0 ? ' active' : '');
+    btn.textContent = tab.label;
+    btn.onclick = () => {
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMenuEditor(tab.key);
+    };
+    bar.appendChild(btn);
+  });
+  if (state.tabs.length) renderMenuEditor(state.tabs[0].key);
+}
+
+function renderMenuEditor(catKey) {
+  currentCat = catKey;
+  const items    = state.menuData[catKey] || [];
+  const withTemp = TEMP_CATS.includes(catKey);
+  const wrap     = document.getElementById('menu-editor');
+  wrap.innerHTML = '';
+
+  items.forEach((item, idx) => wrap.appendChild(buildItemCard(catKey, item, idx, withTemp)));
+
+  const addBtn = document.createElement('button');
+  addBtn.className = 'btn-add';
+  addBtn.textContent = '＋ 新增品項';
+  addBtn.onclick = () => {
+    if (!state.menuData[catKey]) state.menuData[catKey] = [];
+    state.menuData[catKey].push({ name: '新品項', nameJp: null, desc: null, price: 'NT$0', tag: null, image: null, emoji: null });
+    renderMenuEditor(catKey);
+  };
+  wrap.appendChild(addBtn);
+}
+
+function esc(s) { return (s == null ? '' : String(s)).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+function buildItemCard(catKey, item, idx, withTemp) {
+  const card = document.createElement('div');
+  card.className = 'item-card';
+
+  const sel = v => ['', 'hot', 'iced', 'both'].map(o =>
+    `<option value="${o}" ${item.temp === o || (!item.temp && o === '') ? 'selected' : ''}>${
+      o === '' ? '不顯示' : o === 'hot' ? '熱' : o === 'iced' ? '冰' : '冰 · 熱'
+    }</option>`
+  ).join('');
+
+  card.innerHTML = `
+    <div class="item-card-header" onclick="toggleCard(this)">
+      <span class="item-card-name">${esc(item.name) || '（未命名）'}</span>
+      <div class="item-card-actions">
+        <button class="btn-remove" onclick="event.stopPropagation(); removeItem('${catKey}',${idx})">移除</button>
+        <span class="item-chevron">▼</span>
+      </div>
+    </div>
+    <div class="item-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>品名</label>
+          <input type="text" value="${esc(item.name)}"
+            oninput="updateItem('${catKey}',${idx},'name',this.value);
+                     this.closest('.item-card').querySelector('.item-card-name').textContent=this.value||'（未命名）'">
+        </div>
+        <div class="field">
+          <label>副品名 <span class="hint">（可空白）</span></label>
+          <input type="text" value="${esc(item.nameJp)}" oninput="updateItem('${catKey}',${idx},'nameJp',this.value)">
+        </div>
+      </div>
+      <div class="field">
+        <label>說明文字</label>
+        <textarea oninput="updateItem('${catKey}',${idx},'desc',this.value)">${esc(item.desc)}</textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>價格</label>
+          <input type="text" value="${esc(item.price)}" placeholder="NT$0"
+            oninput="updateItem('${catKey}',${idx},'price',this.value)">
+        </div>
+        <div class="field">
+          <label>標籤 <span class="hint">（可空白）</span></label>
+          <input type="text" value="${esc(item.tag)}" placeholder="限定"
+            oninput="updateItem('${catKey}',${idx},'tag',this.value)">
+        </div>
+      </div>
+      <div class="field">
+        <label>圖片網址 <span class="hint">（空白 = 不顯示）</span></label>
+        <input type="text" value="${esc(item.image)}" placeholder="src/photo.jpg 或圖片網址"
+          oninput="updateItem('${catKey}',${idx},'image',this.value)">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Emoji <span class="hint">（無圖時替代）</span></label>
+          <input type="text" value="${esc(item.emoji)}" placeholder="☕"
+            oninput="updateItem('${catKey}',${idx},'emoji',this.value)">
+        </div>
+        ${withTemp ? `<div class="field"><label>溫度選項</label><select onchange="updateItem('${catKey}',${idx},'temp',this.value)">${sel()}</select></div>` : ''}
+      </div>
+    </div>`;
+  return card;
+}
+
+function toggleCard(header) {
+  header.closest('.item-card').classList.toggle('collapsed');
+}
+
+function updateItem(catKey, idx, field, value) {
+  if (!state.menuData[catKey] || !state.menuData[catKey][idx]) return;
+  state.menuData[catKey][idx][field] = ne(value);
+}
+
+function removeItem(catKey, idx) {
+  if (!confirm('確定要移除「' + (state.menuData[catKey][idx].name || '這個品項') + '」嗎？')) return;
+  state.menuData[catKey].splice(idx, 1);
+  renderMenuEditor(catKey);
+}
+
+// ─────────────────────────────────────
+//  Other settings
+// ─────────────────────────────────────
+function buildTabsEditor() {
+  const wrap = document.getElementById('tabs-editor');
+  wrap.innerHTML = '';
+  state.tabs.forEach((tab, i) => {
+    const row = document.createElement('div');
+    row.className = 'field-row';
+    row.innerHTML = `
+      <div class="field" style="flex:0 0 90px">
+        <label>識別碼</label>
+        <input type="text" value="${tab.key}" readonly style="opacity:0.45;cursor:not-allowed">
+      </div>
+      <div class="field">
+        <label>顯示名稱</label>
+        <input type="text" value="${tab.label}" oninput="state.tabs[${i}].label=this.value">
+      </div>`;
+    wrap.appendChild(row);
+  });
+}
+
+function buildSectionTitlesEditor() {
+  const wrap = document.getElementById('section-titles-editor');
+  wrap.innerHTML = '';
+  Object.keys(state.sectionTitles).forEach(key => {
+    const t = state.sectionTitles[key];
+    const g = document.createElement('div');
+    g.className = 'other-group';
+    g.innerHTML = `
+      <div class="key-chip">${key}</div>
+      <div class="field-row">
+        <div class="field">
+          <label>英文標題</label>
+          <input type="text" value="${ve(t.en)}" oninput="state.sectionTitles['${key}'].en=ne(this.value)">
+        </div>
+        <div class="field">
+          <label>中文副標</label>
+          <input type="text" value="${ve(t.jp)}" oninput="state.sectionTitles['${key}'].jp=ne(this.value)">
+        </div>
+      </div>`;
+    wrap.appendChild(g);
+  });
+}
+
+// ─────────────────────────────────────
+//  Save / Reset
+// ─────────────────────────────────────
+// ─────────────────────────────────────
+//  Export config.js
+// ─────────────────────────────────────
+function openConfigModal() {
+  state.landingData = readLanding();
+
+  function jv(v) {
+    if (v === null || v === undefined) return 'null';
+    if (typeof v === 'boolean') return String(v);
+    return JSON.stringify(v);
+  }
+
+  function renderItem(item) {
+    const keys = ['name','nameJp','desc','price','tag','image','emoji','temp'];
+    const lines = keys.filter(k => k in item).map(k => `      ${k}: ${jv(item[k])}`);
+    return '    {\n' + lines.join(',\n') + '\n    }';
+  }
+
+  function renderMenuData(md) {
+    const cats = Object.keys(md);
+    const blocks = cats.map(cat => {
+      const items = (md[cat] || []).map(renderItem).join(',\n');
+      return `  ${cat}: [\n${items}\n  ]`;
+    });
+    return 'const menuData = {\n' + blocks.join(',\n') + '\n};';
+  }
+
+  function renderLanding(ld) {
+    const entries = Object.keys(ld).map(k => `  ${k}: ${jv(ld[k])}`);
+    return 'const landingData = {\n' + entries.join(',\n') + '\n};';
+  }
+
+  function renderTabs(t) {
+    const items = t.map(tab => `  { key: ${jv(tab.key)}, label: ${jv(tab.label)} }`);
+    return 'const tabs = [\n' + items.join(',\n') + '\n];';
+  }
+
+  function renderSectionTitles(st) {
+    const entries = Object.keys(st).map(k => {
+      const t = st[k];
+      return `  ${k}: { en: ${jv(t.en)}, jp: ${jv(t.jp)} }`;
+    });
+    return 'const sectionTitles = {\n' + entries.join(',\n') + '\n};';
+  }
+
+  const content = [
+    renderMenuData(state.menuData),
+    renderLanding(state.landingData),
+    renderTabs(state.tabs),
+    renderSectionTitles(state.sectionTitles)
+  ].join('\n\n');
+
+  document.getElementById('config-output').value = content;
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.getElementById('config-modal').classList.add('open');
+  document.getElementById('copy-btn').textContent = '複製全部';
+  document.getElementById('copy-btn').classList.remove('copied');
+}
+
+function closeConfigModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.getElementById('config-modal').classList.remove('open');
+}
+
+function copyConfig() {
+  const ta  = document.getElementById('config-output');
+  const btn = document.getElementById('copy-btn');
+  ta.select();
+  navigator.clipboard.writeText(ta.value).then(() => {
+    btn.textContent = '已複製 ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '複製全部'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function saveAll() {
+  state.landingData = readLanding();
+  localStorage.setItem('kigoMenuConfig', JSON.stringify(state));
+  showToast('已儲存！重新整理首頁即可看到更新');
+}
+
+function resetConfig() {
+  if (!confirm('確定要清除所有後台設定，恢復 config.js 預設值嗎？')) return;
+  localStorage.removeItem('kigoMenuConfig');
+  location.reload();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─────────────────────────────────────
+//  Bootstrap
+// ─────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  populateLanding();
+  buildCatTabs();
+  buildTabsEditor();
+  buildSectionTitlesEditor();
+});
+</script>
+</body>
+</html>
