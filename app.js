@@ -7,7 +7,7 @@
   try {
     var c = JSON.parse(stored);
     if (c.menuData)      Object.keys(c.menuData).forEach(function(k) { menuData[k] = c.menuData[k]; });
-    if (c.landingData)   Object.assign(landingData, c.landingData);
+    if (c.landingData)   Object.keys(c.landingData).forEach(function(k) { if (c.landingData[k] !== null) landingData[k] = c.landingData[k]; });
     if (c.tabs)          { tabs.length = 0; c.tabs.forEach(function(t) { tabs.push(t); }); }
     if (c.sectionTitles) Object.assign(sectionTitles, c.sectionTitles);
   } catch(e) {}

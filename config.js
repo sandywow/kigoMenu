@@ -196,7 +196,7 @@ const landingData = {
   cardPrice: "NT$100",
   cardTag: "限定",
   bannerLabel: null,
-  bannerImage: null,
+  bannerImage: "src/lemon pound.jpg",
   bannerAlt: "當季推薦海報",
   bannerPlaceholder: true,
   ctaButton: "今日菜單",
