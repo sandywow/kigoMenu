@@ -51,16 +51,13 @@ function switchTab(category, btn) {
 /* ═════════════════════
    RENDER SECTIONS
    ═════════════════════ */
-function tempPill(temp) {
-  if (!temp) return '';
-  const map = {
-    hot:  { cls: 'temp-hot',  label: '熱' },
-    iced: { cls: 'temp-cold', label: '冰' },
-    both: { cls: 'temp-both', label: '冰 · 熱' }
-  };
-  const t = map[temp];
-  if (!t) return '';
-  return `<span class="temp-pill ${t.cls}">${t.label}</span>`;
+function tempDots(temp) {
+  const hot   = `<span class="temp-dot temp-dot-hot"></span>`;
+  const cold  = `<span class="temp-dot temp-dot-cold"></span>`;
+  const blank = `<span class="temp-dot temp-dot-blank"></span>`;
+  const h = (temp === 'hot'  || temp === 'both') ? hot  : blank;
+  const c = (temp === 'iced' || temp === 'both') ? cold : blank;
+  return `<div class="temp-dots">${h}${c}</div>`;
 }
 
 function renderSection(category) {
@@ -81,24 +78,25 @@ function renderSection(category) {
   items.forEach((item, i) => {
     const imgHtml = item.image
       ? `<img src="${item.image}" alt="${item.name || ''}" loading="lazy">`
-      : item.emoji
-        ? `<span class="menu-item-emoji">${item.emoji}</span>`
-        : '';
-    const imgBlock  = imgHtml ? `<div class="menu-item-img-wrap">${imgHtml}</div>` : '';
-    const tagHtml   = item.tag   ? `<span class="item-tag">${item.tag}</span>` : '';
-    const temp      = hasTempItems ? tempPill(item.temp) : '';
-    const nameHtml  = item.name  ? `<span class="menu-item-name">${item.name}</span>` : '';
-    const descHtml  = item.desc  ? `<p class="menu-item-desc">${item.desc}</p>` : '';
-    const priceHtml = item.price ? `<div class="menu-item-price">${item.price}</div>` : '';
+      : '';
+    const imgBlock   = imgHtml ? `<div class="menu-item-img-wrap">${imgHtml}</div>` : '';
+    const dotsHtml   = hasTempItems ? tempDots(item.temp) : '';
+    const rightBlock = (dotsHtml || imgBlock) ? `<div class="menu-item-right">${dotsHtml}${imgBlock}</div>` : '';
+    const tagHtml    = item.tag ? `<span class="item-tag">${item.tag}</span>` : '';
+    const nameHtml   = item.name   ? `<span class="menu-item-name">${item.name}</span>` : '';
+    const nameJpHtml = item.nameJp ? `<div class="menu-item-name-jp">${item.nameJp.replace(/\n/g, '<br>')}</div>` : '';
+    const descHtml   = item.desc   ? `<p class="menu-item-desc">${item.desc.replace(/\n/g, '<br>')}</p>` : '';
+    const priceHtml  = item.price  ? `<div class="menu-item-price">${item.price}</div>` : '';
 
     html += `
       <div class="menu-item" style="animation-delay:${i * 0.07}s">
         <div class="menu-item-body">
-          <div class="menu-item-top">${nameHtml}${temp}${tagHtml}</div>
+          <div class="menu-item-top">${nameHtml}${tagHtml}</div>
+          ${nameJpHtml}
           ${descHtml}
           ${priceHtml}
         </div>
-        ${imgBlock}
+        ${rightBlock}
       </div>`;
   });
 

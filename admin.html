@@ -842,8 +842,8 @@ function buildItemCard(catKey, item, idx, withTemp) {
                      this.closest('.item-card').querySelector('.item-card-name').textContent=this.value||'（未命名）'">
         </div>
         <div class="field">
-          <label>副品名 <span class="hint">（可空白）</span></label>
-          <input type="text" value="${esc(item.nameJp)}" oninput="updateItem('${catKey}',${idx},'nameJp',this.value)">
+          <label>副品名 <span class="hint">（可空白，換行會顯示在網頁）</span></label>
+          <textarea oninput="updateItem('${catKey}',${idx},'nameJp',this.value)">${esc(item.nameJp)}</textarea>
         </div>
       </div>
       <div class="field">
@@ -867,14 +867,7 @@ function buildItemCard(catKey, item, idx, withTemp) {
         <input type="text" value="${esc(item.image)}" placeholder="src/photo.jpg 或圖片網址"
           oninput="updateItem('${catKey}',${idx},'image',this.value)">
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Emoji <span class="hint">（無圖時替代）</span></label>
-          <input type="text" value="${esc(item.emoji)}" placeholder="☕"
-            oninput="updateItem('${catKey}',${idx},'emoji',this.value)">
-        </div>
-        ${withTemp ? `<div class="field"><label>溫度選項</label><select onchange="updateItem('${catKey}',${idx},'temp',this.value)">${sel()}</select></div>` : ''}
-      </div>
+      ${withTemp ? `<div class="field"><label>溫度選項</label><select onchange="updateItem('${catKey}',${idx},'temp',this.value)">${sel()}</select></div>` : ''}
     </div>`;
   return card;
 }

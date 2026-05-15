@@ -1,24 +1,24 @@
 const menuData = {
   seasonal: [
     {
-      name: "午後檸檬123",
+      name: "午後檸檬",
       nameJp: null,
       desc: "微酸剛好",
       price: "NT$100",
       tag: "限定",
       image: "src/670876.jpg",
-      emoji: null
+
     }
   ],
   dessert: [
     {
       name: "香橙巴斯克蛋糕",
       nameJp: null,
-      desc: "綿密乳酪融入橙香果蜜，清爽不膩，每一口都是乳酪控的天堂。",
+      desc: "綿密乳酪融入橙香果蜜，清爽不膩，每一口都是乳酪控的天堂",
       price: "NT$80",
       tag: null,
       image: null,
-      emoji: null
+
     },
     {
       name: "莓果巴斯克蛋糕",
@@ -27,16 +27,16 @@ const menuData = {
       price: "NT$100",
       tag: null,
       image: null,
-      emoji: null
+
     },
     {
       name: "布朗尼想怎樣",
       nameJp: null,
-      desc: "是雙層布朗尼！兩種口感一次滿足。",
+      desc: "是雙層布朗尼！兩種口感一次滿足",
       price: "NT$120",
       tag: null,
       image: null,
-      emoji: null
+
     },
     {
       name: "淡烏龍芝士蛋糕",
@@ -45,7 +45,7 @@ const menuData = {
       price: "NT$180",
       tag: null,
       image: null,
-      emoji: null
+
     },
     {
       name: "重烏龍芝士蛋糕",
@@ -54,129 +54,125 @@ const menuData = {
       price: "NT$160",
       tag: null,
       image: null,
-      emoji: null
+
     }
   ],
   coffee: [
     {
-      name: "每日手沖",
+      name: "享．咖啡",
       nameJp: null,
-      desc: "單一產區，濾紙沖煮。每日更換豆款，歡迎詢問今日產地故事。",
-      price: "NT$130",
+      desc: null,
+      price: "NT$100",
       image: null,
-      emoji: "☕",
-      temp: "hot"
-    },
-    {
-      name: "牛奶咖啡",
-      nameJp: null,
-      desc: "濃萃法壓咖啡與溫熱全脂牛奶等比相融，是清晨的安靜日常。",
-      price: "NT$110",
-      image: null,
-      emoji: null,
+
       temp: "both"
     },
     {
-      name: "冷萃黑咖啡",
+      name: "享．拿鐵",
       nameJp: null,
-      desc: "低溫浸泡十八小時，口感圓潤、酸值極低，深邃而清澈，附清透冰塊。",
-      price: "NT$135",
+      desc: null,
+      price: "NT$150",
       image: null,
-      emoji: null,
+
+      temp: "both"
+    },
+    {
+      name: "冰釀咖啡",
+      nameJp: null,
+      desc: "哥倫比亞｜薇拉莊園  微量批次\n產自中南美洲，慢火烘焙技術，使咖啡獨有堅果可可風味別明亮而乾淨，尾韻代微微橙皮酸。",
+      price: "NT$200",
+      tag: "每日限量",
+      image: null,
+
       temp: "iced"
     },
     {
-      name: "拿鐵",
+      name: "享．手沖",
       nameJp: null,
-      desc: null,
-      price: "NT$120",
+      desc: "👑經典款  瓜地馬拉｜甜果微醺\n🎁驚喜款  店長嚴選",
+      price: "NT$180",
       image: null,
-      emoji: null,
+
       temp: "both"
     },
     {
-      name: "可塔朵",
+      name: "沁涼青檸咖啡",
       nameJp: null,
-      desc: "濃縮咖啡與溫牛奶等比相合，小杯、濃縮、誠實。",
-      price: "NT$115",
+      desc: null,
+      price: "NT$150",
       image: null,
-      emoji: null,
-      temp: "hot"
+
+      temp: "iced"
+    },
+    {
+      name: "夢迴泡泡",
+      nameJp: null,
+      desc: null,
+      price: "NT$150",
+      tag: null,
+      image: null,
+
+      temp: "iced"
+    },
+    {
+      name: "焦糖瑪奇朵",
+      nameJp: null,
+      desc: null,
+      price: "NT$180",
+      tag: null,
+      image: null,
+
+      temp: "iced"
     }
   ],
   tea: [
     {
-      name: "散葉伯爵茶",
-      nameJp: null,
-      desc: "大吉嶺產區，佛手柑香氣鮮明。以小茶壺獨份沖泡，慢慢喝。",
-      price: "NT$110",
-      image: null,
-      emoji: "🫖",
-      temp: "hot"
-    },
-    {
-      name: "玉露冷泡",
-      nameJp: null,
-      desc: "頂級日本玉露低溫冷泡八小時，鮮甜回甘，帶著沁涼的海苔氣息。",
-      price: "NT$140",
-      image: null,
-      emoji: null,
-      temp: "iced"
-    },
-    {
-      name: "焙茶拿鐵",
-      nameJp: null,
-      desc: "日式焙番茶與燕麥奶蒸製相融，撒上焙茶粉，大地般的溫暖香氣。",
-      price: "NT$130",
-      image: null,
-      emoji: null,
-      temp: "both"
-    },
-    {
-      name: "洋甘菊蜂蜜茶",
+      name: "香蘋肉桂茶",
       nameJp: null,
       desc: null,
-      price: "NT$110",
+      price: "NT$150",
+      tag: "暖心推薦",
       image: null,
-      emoji: null,
+
       temp: "hot"
-    },
-    {
-      name: "季節水果茶",
-      nameJp: null,
-      desc: "當日時令水果搭配洛神花與玫瑰果，冷泡後盛在透明冰杯中上桌。",
-      price: "NT$120",
-      image: null,
-      emoji: "🍒",
-      temp: "iced"
     }
   ],
   noncafe: [
     {
-      name: "現打鮮果汁",
+      name: "可可榛果奶霧",
       nameJp: null,
-      desc: "每日依時令選果，現點現榨，不加水不加糖。",
-      price: "NT$120",
+      desc: null,
+      price: "NT$180",
       image: null,
-      emoji: "🍊",
+
+      temp: "hot"
+    },
+    {
+      name: "晨露玫香花醋飲",
+      nameJp: null,
+      desc: null,
+      price: "NT$180",
+      image: null,
+
       temp: "iced"
     },
     {
-      name: "薑黃拿鐵",
-      nameJp: null,
-      desc: "薑黃、肉桂、黑胡椒與燕麥奶的溫暖組合，舒緩又飽足。",
-      price: "NT$130",
+      name: "接骨木檸檬泡泡",
+      nameJp: "氣泡飲",
+      desc: null,
+      price: "NT$150",
       image: null,
-      emoji: null,
-      temp: "both"
+
+      temp: "iced"
     },
     {
-      name: "氣泡水果飲",
-      nameJp: null,
+      name: "夜色星河",
+      nameJp: "乳酸飲\n※本飲品含蝶豆花，孕婦、先天凝血功能不佳、服用抗凝血藥物或糖尿病患者，不宜飲用。",
       desc: null,
-      price: "NT$110",
+      price: "NT$150",
+      tag: null,
       image: null,
-      emoji: "🫧",
+
       temp: "iced"
     }
   ]
@@ -191,7 +187,7 @@ const landingData = {
   heroBadge: "當季限定",
   heroTitle: "草莓千層酥",
   heroSubtitle: "本週限定 · 每日限量",
-  tagline: "\"享受生活應該是進行式\"",
+  tagline: "˚₊‧꒰ა 享受生活應該是進行式 ໒꒱ ‧₊˚",
   taglineJp: "𝐿𝑖𝑓𝑒 𝑖𝑠 𝑎𝑙𝑙 𝑎𝑏𝑜𝑢𝑡 ℎ𝑎𝑣𝑖𝑛𝑔 𝑎 𝑔𝑜𝑜𝑑 𝑡𝑖𝑚𝑒.",
   cardLabel: "今日推薦",
   cardName: "午後檸檬",
@@ -206,7 +202,7 @@ const landingData = {
   ctaButton: "今日菜單",
   ctaHint: "瀏覽全品項",
   footerLeft: "— since 2023 —",
-  footerRight: "每日 10:00–20:00",
+  footerRight: null,
   menuTitle: "今日菜單",
   menuSubtitle: "Spring 2026"
 };
