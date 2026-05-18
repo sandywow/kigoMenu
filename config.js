@@ -6,8 +6,8 @@ const menuData = {
       desc: "微酸剛好",
       price: "NT$100",
       tag: "限定",
-      image: "src/lemon cake-01.jpg",
-
+      image: "src/670876.jpg",
+      emoji: null
     }
   ],
   dessert: [
@@ -18,7 +18,7 @@ const menuData = {
       price: "NT$80",
       tag: null,
       image: null,
-
+      emoji: null
     },
     {
       name: "莓果巴斯克蛋糕",
@@ -27,7 +27,16 @@ const menuData = {
       price: "NT$100",
       tag: null,
       image: null,
-
+      emoji: null
+    },
+    {
+      name: "午後檸檬",
+      nameJp: null,
+      desc: null,
+      price: "NT$100",
+      tag: null,
+      image: null,
+      emoji: null
     },
     {
       name: "布朗尼想怎樣",
@@ -36,7 +45,7 @@ const menuData = {
       price: "NT$120",
       tag: null,
       image: null,
-
+      emoji: null
     },
     {
       name: "淡烏龍芝士蛋糕",
@@ -45,7 +54,7 @@ const menuData = {
       price: "NT$180",
       tag: null,
       image: null,
-
+      emoji: null
     },
     {
       name: "重烏龍芝士蛋糕",
@@ -54,7 +63,7 @@ const menuData = {
       price: "NT$160",
       tag: null,
       image: null,
-
+      emoji: null
     }
   ],
   coffee: [
@@ -64,7 +73,7 @@ const menuData = {
       desc: null,
       price: "NT$100",
       image: null,
-
+      emoji: "☕",
       temp: "both"
     },
     {
@@ -73,7 +82,7 @@ const menuData = {
       desc: null,
       price: "NT$150",
       image: null,
-
+      emoji: null,
       temp: "both"
     },
     {
@@ -83,7 +92,7 @@ const menuData = {
       price: "NT$200",
       tag: "每日限量",
       image: null,
-
+      emoji: null,
       temp: "iced"
     },
     {
@@ -92,7 +101,7 @@ const menuData = {
       desc: "👑經典款  瓜地馬拉｜甜果微醺\n🎁驚喜款  店長嚴選",
       price: "NT$180",
       image: null,
-
+      emoji: null,
       temp: "both"
     },
     {
@@ -101,7 +110,7 @@ const menuData = {
       desc: null,
       price: "NT$150",
       image: null,
-
+      emoji: null,
       temp: "iced"
     },
     {
@@ -111,7 +120,7 @@ const menuData = {
       price: "NT$150",
       tag: null,
       image: null,
-
+      emoji: null,
       temp: "iced"
     },
     {
@@ -121,7 +130,7 @@ const menuData = {
       price: "NT$180",
       tag: null,
       image: null,
-
+      emoji: null,
       temp: "iced"
     }
   ],
@@ -133,7 +142,7 @@ const menuData = {
       price: "NT$150",
       tag: "暖心推薦",
       image: null,
-
+      emoji: "🫖",
       temp: "hot"
     }
   ],
@@ -144,7 +153,7 @@ const menuData = {
       desc: null,
       price: "NT$180",
       image: null,
-
+      emoji: "🍊",
       temp: "hot"
     },
     {
@@ -153,7 +162,7 @@ const menuData = {
       desc: null,
       price: "NT$180",
       image: null,
-
+      emoji: null,
       temp: "iced"
     },
     {
@@ -162,7 +171,7 @@ const menuData = {
       desc: null,
       price: "NT$150",
       image: null,
-
+      emoji: "🫧",
       temp: "iced"
     },
     {
@@ -172,7 +181,7 @@ const menuData = {
       price: "NT$150",
       tag: null,
       image: null,
-
+      emoji: null,
       temp: "iced"
     }
   ]
@@ -189,16 +198,19 @@ const landingData = {
   heroSubtitle: "本週限定 · 每日限量",
   tagline: "˚₊‧꒰ა 享受生活應該是進行式 ໒꒱ ‧₊˚",
   taglineJp: "𝐿𝑖𝑓𝑒 𝑖𝑠 𝑎𝑙𝑙 𝑎𝑏𝑜𝑢𝑡 ℎ𝑎𝑣𝑖𝑛𝑔 𝑎 𝑔𝑜𝑜𝑑 𝑡𝑖𝑚𝑒.",
-  cardLabel: "今日推薦",
+  cardLabel: null,
   cardName: "午後檸檬",
   cardNameJp: null,
   cardDesc: "微酸剛好(⸝⸝¯ᵕ¯⸝⸝)🍋",
   cardPrice: "NT$100",
   cardTag: "限定",
   bannerLabel: null,
-  bannerImage: "src/lemon pound.jpg",
+  bannerImage: null,
   bannerAlt: "當季推薦海報",
-  bannerPlaceholder: true,
+  bannerPlaceholder: false,
+  hideHero: true,
+  hideCard: true,
+  hideBanner: false,
   ctaButton: "今日菜單",
   ctaHint: "瀏覽全品項",
   footerLeft: "— since 2023 —",
