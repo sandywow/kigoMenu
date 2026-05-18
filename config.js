@@ -5,7 +5,7 @@ const menuData = {
       nameJp: null,
       desc: "微酸剛好",
       price: "NT$100",
-      tag: "限定",
+      tag: null,
       image: "src/lemon cake-01.jpg",
       emoji: null
     }
