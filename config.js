@@ -6,7 +6,7 @@ const menuData = {
       desc: "微酸剛好",
       price: "NT$100",
       tag: "限定",
-      image: "src/670876.jpg",
+      image: "src/lemon cake-01.jpg",
       emoji: null
     }
   ],
@@ -35,7 +35,7 @@ const menuData = {
       desc: null,
       price: "NT$100",
       tag: null,
-      image: null,
+      image: "src/lemon cake-01.jpg",
       emoji: null
     },
     {
@@ -205,7 +205,7 @@ const landingData = {
   cardPrice: "NT$100",
   cardTag: "限定",
   bannerLabel: null,
-  bannerImage: null,
+  bannerImage: "src/lemon pound.jpg",
   bannerAlt: "當季推薦海報",
   bannerPlaceholder: false,
   hideHero: true,
