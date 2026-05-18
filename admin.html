@@ -244,6 +244,17 @@
       user-select: none;
     }
     .item-card-name { font-size: 14px; color: var(--ink-soft); }
+    .soldout-badge {
+      font-size: 10px;
+      background: #888;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.15em;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .item-card.is-soldout .item-card-header { opacity: 0.55; }
     .item-card-actions { display: flex; gap: 8px; align-items: center; }
     .item-chevron {
       font-size: 10px;
@@ -862,7 +873,7 @@ function esc(s) { return (s == null ? '' : String(s)).replace(/"/g, '&quot;').re
 
 function buildItemCard(catKey, item, idx, withTemp, total) {
   const card = document.createElement('div');
-  card.className = 'item-card';
+  card.className = 'item-card' + (item.soldOut ? ' is-soldout' : '');
 
   const sel = v => ['', 'hot', 'iced', 'both'].map(o =>
     `<option value="${o}" ${item.temp === o || (!item.temp && o === '') ? 'selected' : ''}>${
@@ -876,6 +887,7 @@ function buildItemCard(catKey, item, idx, withTemp, total) {
   card.innerHTML = `
     <div class="item-card-header" onclick="toggleCard(this)">
       <span class="item-card-name">${esc(item.name) || '（未命名）'}</span>
+      <span class="soldout-badge"${item.soldOut ? '' : ' style="display:none"'}>售完</span>
       <div class="item-card-actions">
         <button class="btn-move" onclick="event.stopPropagation(); moveItem('${catKey}',${idx},-1)" ${idx === 0 ? 'disabled' : ''}>${upSvg}</button>
         <button class="btn-move" onclick="event.stopPropagation(); moveItem('${catKey}',${idx},1)" ${idx === total - 1 ? 'disabled' : ''}>${downSvg}</button>
@@ -887,7 +899,12 @@ function buildItemCard(catKey, item, idx, withTemp, total) {
       <div class="toggle-row">
         <span class="toggle-label">售完</span>
         <label class="toggle">
-          <input type="checkbox" ${item.soldOut ? 'checked' : ''} onchange="updateItem('${catKey}',${idx},'soldOut',this.checked)">
+          <input type="checkbox" ${item.soldOut ? 'checked' : ''} onchange="
+            updateItem('${catKey}',${idx},'soldOut',this.checked);
+            const c=this.closest('.item-card');
+            c.classList.toggle('is-soldout',this.checked);
+            c.querySelector('.soldout-badge').style.display=this.checked?'':'none';
+          ">
           <span class="toggle-track"></span>
         </label>
       </div>
