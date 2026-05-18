@@ -598,6 +598,14 @@ body::before {
 .temp-dot-hot   { background: #d94f4f; }
 .temp-dot-cold  { background: #4a90d9; }
 .temp-dot-blank { background: transparent; }
+.menu-item-soldout { opacity: 0.45; }
+.menu-item-soldout .menu-item-price { text-decoration: line-through; }
+.item-tag-soldout {
+  background: var(--ink-soft) !important;
+  color: var(--white) !important;
+  border: none !important;
+  letter-spacing: 0.25em;
+}
 .item-tag {
   display: inline-block;
   background: var(--lemon);

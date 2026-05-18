@@ -82,16 +82,17 @@ function renderSection(category) {
     const imgBlock   = imgHtml ? `<div class="menu-item-img-wrap">${imgHtml}</div>` : '';
     const dotsHtml   = hasTempItems ? tempDots(item.temp) : '';
     const rightBlock = (dotsHtml || imgBlock) ? `<div class="menu-item-right">${dotsHtml}${imgBlock}</div>` : '';
-    const tagHtml    = item.tag ? `<span class="item-tag">${item.tag}</span>` : '';
+    const tagHtml     = item.tag ? `<span class="item-tag">${item.tag}</span>` : '';
+    const soldOutHtml = item.soldOut ? `<span class="item-tag item-tag-soldout">售完</span>` : '';
     const nameHtml   = item.name   ? `<span class="menu-item-name">${item.name}</span>` : '';
     const nameJpHtml = item.nameJp ? `<div class="menu-item-name-jp">${item.nameJp.replace(/\n/g, '<br>')}</div>` : '';
     const descHtml   = item.desc   ? `<p class="menu-item-desc">${item.desc.replace(/\n/g, '<br>')}</p>` : '';
     const priceHtml  = item.price  ? `<div class="menu-item-price">${item.price}</div>` : '';
 
     html += `
-      <div class="menu-item" style="animation-delay:${i * 0.07}s">
+      <div class="menu-item${item.soldOut ? ' menu-item-soldout' : ''}" style="animation-delay:${i * 0.07}s">
         <div class="menu-item-body">
-          <div class="menu-item-top">${nameHtml}${tagHtml}</div>
+          <div class="menu-item-top">${nameHtml}${tagHtml}${soldOutHtml}</div>
           ${nameJpHtml}
           ${descHtml}
           ${priceHtml}

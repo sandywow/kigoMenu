@@ -884,6 +884,13 @@ function buildItemCard(catKey, item, idx, withTemp, total) {
       </div>
     </div>
     <div class="item-fields">
+      <div class="toggle-row">
+        <span class="toggle-label">售完</span>
+        <label class="toggle">
+          <input type="checkbox" ${item.soldOut ? 'checked' : ''} onchange="updateItem('${catKey}',${idx},'soldOut',this.checked)">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
       <div class="field-row">
         <div class="field">
           <label>品名</label>
@@ -928,7 +935,7 @@ function toggleCard(header) {
 
 function updateItem(catKey, idx, field, value) {
   if (!state.menuData[catKey] || !state.menuData[catKey][idx]) return;
-  state.menuData[catKey][idx][field] = ne(value);
+  state.menuData[catKey][idx][field] = (field === 'soldOut') ? value : ne(value);
 }
 
 function moveItem(catKey, idx, dir) {
