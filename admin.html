@@ -485,6 +485,13 @@
   <div class="section-card">
     <div class="section-card-title">主視覺</div>
     <div class="section-fields">
+      <div class="toggle-row">
+        <span class="toggle-label">隱藏主視覺</span>
+        <label class="toggle">
+          <input type="checkbox" id="ld-hideHero">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
       <div class="field">
         <label>圖片網址 <span class="hint">（空白 = 顯示預設插圖）</span></label>
         <input type="text" id="ld-heroImage" placeholder="留空則顯示預設插圖">
@@ -523,6 +530,13 @@
   <div class="section-card">
     <div class="section-card-title">今日推薦卡</div>
     <div class="section-fields">
+      <div class="toggle-row">
+        <span class="toggle-label">隱藏今日推薦卡</span>
+        <label class="toggle">
+          <input type="checkbox" id="ld-hideCard">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
       <div class="field">
         <label>卡片標題 <span class="hint">（空白 = 隱藏整張卡）</span></label>
         <input type="text" id="ld-cardLabel" placeholder="今日推薦">
@@ -557,6 +571,13 @@
   <div class="section-card">
     <div class="section-card-title">Banner 海報</div>
     <div class="section-fields">
+      <div class="toggle-row">
+        <span class="toggle-label">隱藏 Banner 海報</span>
+        <label class="toggle">
+          <input type="checkbox" id="ld-hideBanner">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
       <div class="field">
         <label>Banner 標題 <span class="hint">（空白 = 不顯示標題）</span></label>
         <input type="text" id="ld-bannerLabel">
@@ -734,8 +755,11 @@ function populateLanding() {
     const el = document.getElementById('ld-' + k);
     if (el) el.value = ve(ld[k]);
   });
-  document.getElementById('ld-showDate').checked        = !!ld.showDate;
+  document.getElementById('ld-showDate').checked          = !!ld.showDate;
   document.getElementById('ld-bannerPlaceholder').checked = !!ld.bannerPlaceholder;
+  document.getElementById('ld-hideHero').checked           = !!ld.hideHero;
+  document.getElementById('ld-hideCard').checked           = !!ld.hideCard;
+  document.getElementById('ld-hideBanner').checked         = !!ld.hideBanner;
 }
 
 function readLanding() {
@@ -761,6 +785,9 @@ function readLanding() {
     bannerImage:     t('bannerImage'),
     bannerAlt:       state.landingData.bannerAlt || '當季推薦海報',
     bannerPlaceholder: document.getElementById('ld-bannerPlaceholder').checked,
+    hideHero:        document.getElementById('ld-hideHero').checked,
+    hideCard:        document.getElementById('ld-hideCard').checked,
+    hideBanner:      document.getElementById('ld-hideBanner').checked,
     ctaButton:       t('ctaButton'),
     ctaHint:         t('ctaHint'),
     footerLeft:      t('footerLeft'),

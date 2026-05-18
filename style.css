@@ -701,6 +701,11 @@ body::before {
   50%       { transform: translateY(-10px); }
 }
 
+/* ── Visibility overrides (controlled from admin) ── */
+#landing.hide-hero .hero-wrapper { display: none !important; }
+#landing.hide-card #seasonal-card { display: none !important; }
+#landing.hide-banner #banner-section { display: none !important; }
+
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--cream); }

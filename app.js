@@ -238,6 +238,12 @@ function initLanding() {
   }
 
   buildTabs();
+
+  /* ── Apply visibility flags from landingData ── */
+  const landing = document.getElementById('landing');
+  landing.classList.toggle('hide-hero',   !!ld.hideHero);
+  landing.classList.toggle('hide-card',   !!ld.hideCard);
+  landing.classList.toggle('hide-banner', !!ld.hideBanner);
 }
 
 document.addEventListener('DOMContentLoaded', initLanding);
