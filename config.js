@@ -228,9 +228,9 @@ const tabs = [
 ];
 
 const sectionTitles = {
-  seasonal: { en: "Seasonal Selections", jp: "季節推薦 · 本季限定" },
-  coffee: { en: "Coffee", jp: "咖啡 · 精品豆單品" },
-  tea: { en: "Tea", jp: "茶 · 世界茶葉精選" },
-  noncafe: { en: "Non-Caffeinated", jp: "無咖啡因 · 輕鬆選擇" },
-  dessert: { en: "Pâtisserie", jp: "手作甜點 · 每日新鮮" }
+  seasonal: { en: "Seasonal Selections", jp: "季節推薦" },
+  coffee: { en: "Coffee", jp: "咖啡" },
+  tea: { en: "Tea", jp: "茶飲" },
+  noncafe: { en: "Non-Caffeinated", jp: "無咖啡因飲品" },
+  dessert: { en: "Pâtisserie", jp: "手作甜點" }
 };
