@@ -1030,7 +1030,7 @@ function openConfigModal() {
   }
 
   function renderItem(item) {
-    const keys = ['name','nameJp','desc','price','tag','image','emoji','temp'];
+    const keys = ['name','nameJp','desc','price','tag','image','emoji','temp','soldOut'];
     const lines = keys.filter(k => k in item).map(k => `      ${k}: ${jv(item[k])}`);
     return '    {\n' + lines.join(',\n') + '\n    }';
   }

@@ -7,7 +7,8 @@ const menuData = {
       price: "NT$100",
       tag: null,
       image: "src/lemon cake-01.jpg",
-      emoji: null
+      emoji: null,
+      soldOut: false
     }
   ],
   dessert: [
@@ -74,7 +75,8 @@ const menuData = {
       price: "NT$100",
       image: null,
       emoji: "☕",
-      temp: "both"
+      temp: "both",
+      soldOut: false
     },
     {
       name: "享．拿鐵",
@@ -83,7 +85,8 @@ const menuData = {
       price: "NT$150",
       image: null,
       emoji: null,
-      temp: "both"
+      temp: "both",
+      soldOut: false
     },
     {
       name: "冰釀咖啡",
@@ -93,7 +96,8 @@ const menuData = {
       tag: "每日限量",
       image: null,
       emoji: null,
-      temp: "iced"
+      temp: "iced",
+      soldOut: true
     },
     {
       name: "享．手沖",
