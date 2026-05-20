@@ -247,7 +247,7 @@ const landingData = {
   hideCard: true,
   hideBanner: false,
   ctaButton: "今日菜單",
-  ctaHint: "瀏覽全品項",
+  ctaHint: "瀏覽全品項⤴︎",
   footerLeft: "— since 2023 —",
   footerRight: null,
   menuTitle: "今日菜單",
