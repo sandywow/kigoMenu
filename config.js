@@ -1,10 +1,19 @@
 const menuData = {
   seasonal: [
     {
+      name: "浮生花事",
+      nameJp: "薯泥．蛋．沙拉",
+      desc: "一天的忙碌過後，來口清爽無負擔的薯泥\n卸下防備，偷得浮生半日閒",
+      price: "NT$80",
+      tag: null,
+      image: "src\\POTATO PICTURE-02.jpg",
+      emoji: null
+    },
+    {
       name: "午後檸檬",
       nameJp: null,
       desc: "微酸剛好",
-      price: "NT$100",
+      price: "NT$60",
       tag: null,
       image: "src/lemon cake-01.jpg",
       emoji: null,
@@ -15,34 +24,45 @@ const menuData = {
     {
       name: "香橙巴斯克蛋糕",
       nameJp: null,
-      desc: "綿密乳酪融入橙香果蜜，清爽不膩，每一口都是乳酪控的天堂",
+      desc: "綿密乳酪融入橙香果蜜\n清爽不膩，每一口都是乳酪控的天堂",
       price: "NT$80",
       tag: null,
       image: null,
-      emoji: null
+      emoji: null,
+      soldOut: true
     },
     {
       name: "莓果巴斯克蛋糕",
       nameJp: null,
-      desc: "酸甜交織，這就是莓果的專屬小悸動吧！",
+      desc: "酸度喚醒味覺，甜味輕輕把你抱住\n酸甜交織，這就是莓果的專屬小悸動吧！",
       price: "NT$100",
       tag: null,
       image: null,
-      emoji: null
+      emoji: null,
+      soldOut: true
     },
     {
       name: "午後檸檬",
-      nameJp: null,
-      desc: null,
-      price: "NT$100",
+      nameJp: "青檸磅蛋糕",
+      desc: "微酸剛好",
+      price: "NT$60",
       tag: null,
       image: "src/lemon cake-01.jpg",
       emoji: null
     },
     {
+      name: "浮生花事",
+      nameJp: "薯泥．蛋．沙拉",
+      desc: "一天的忙碌過後，來口清爽無負擔的薯泥\n卸下防備，偷得浮生半日閒",
+      price: "NT$80",
+      tag: null,
+      image: "src\\POTATO PICTURE-02.jpg",
+      emoji: null
+    },
+    {
       name: "布朗尼想怎樣",
       nameJp: null,
-      desc: "是雙層布朗尼！兩種口感一次滿足",
+      desc: "是雙層布朗尼！\n我都兩種口感讓尼一次滿足了\n尼還想怎樣啦(…>_<…)",
       price: "NT$120",
       tag: null,
       image: null,
@@ -51,7 +71,7 @@ const menuData = {
     {
       name: "淡烏龍芝士蛋糕",
       nameJp: null,
-      desc: null,
+      desc: "輕盈茶香，回甘柔和\n適合想慢下來的時候～",
       price: "NT$180",
       tag: null,
       image: null,
@@ -60,7 +80,7 @@ const menuData = {
     {
       name: "重烏龍芝士蛋糕",
       nameJp: null,
-      desc: "茶韻厚實，濃中戴清，喜歡茶的你一定要試試！",
+      desc: "像山風一樣，茶香迎面而來\n茶韻厚實，濃中帶清\n喜歡茶的你一定要試試！",
       price: "NT$160",
       tag: null,
       image: null,
@@ -142,12 +162,23 @@ const menuData = {
     {
       name: "香蘋肉桂茶",
       nameJp: null,
-      desc: null,
+      desc: "經典組合！以紅茶為基底，融合蘋果與肉桂香氣\n口感溫潤豐富，猶如一杯能喝的甜點",
       price: "NT$150",
       tag: "暖心推薦",
       image: null,
       emoji: "🫖",
       temp: "hot"
+    },
+    {
+      name: "享．紅茶",
+      nameJp: null,
+      desc: null,
+      price: "NT$100",
+      tag: null,
+      image: null,
+      emoji: null,
+      temp: "iced",
+      soldOut: true
     }
   ],
   noncafe: [
@@ -209,7 +240,7 @@ const landingData = {
   cardPrice: "NT$100",
   cardTag: "限定",
   bannerLabel: null,
-  bannerImage: "src/lemon pound.jpg",
+  bannerImage: "src\\BANNER POTATO-02.jpg",
   bannerAlt: "當季推薦海報",
   bannerPlaceholder: false,
   hideHero: true,
@@ -236,5 +267,5 @@ const sectionTitles = {
   coffee: { en: "Coffee", jp: "咖啡" },
   tea: { en: "Tea", jp: "茶飲" },
   noncafe: { en: "Non-Caffeinated", jp: "無咖啡因飲品" },
-  dessert: { en: "Pâtisserie", jp: "手作甜點" }
+  dessert: { en: "Pâtisserie", jp: "手作．甜點" }
 };
