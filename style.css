@@ -1,3 +1,6 @@
+/* Force light mode regardless of system preference */
+:root { color-scheme: only light; }
+
 /* ─── CSS Variables ─── */
 :root {
   --cream:      #F7F3EC;
@@ -475,7 +478,7 @@ body::before {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  margin: 0 24px;
+  margin: 0;
   border-bottom: 1px solid var(--beige);
   position: sticky;
   top: 0;
@@ -495,7 +498,8 @@ body::before {
   white-space: nowrap;
   transition: color 0.3s;
   position: relative;
-  flex-shrink: 0;
+  flex: 1;
+  text-align: center;
 }
 .tab-btn::after {
   content: '';
