@@ -1,6 +1,15 @@
 const menuData = {
   seasonal: [
     {
+      name: "潮汐花事",
+      nameJp: "鮪魚．薯泥．蛋．沙拉",
+      desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
+      price: "NT$100",
+      tag: null,
+      image: null,
+      emoji: null
+    },
+    {
       name: "浮生花事",
       nameJp: "薯泥．蛋．沙拉",
       desc: "一天的忙碌過後，來口清爽無負擔的薯泥\n卸下防備，偷得浮生半日閒",
@@ -39,7 +48,7 @@ const menuData = {
       tag: null,
       image: null,
       emoji: null,
-      soldOut: true
+      soldOut: false
     },
     {
       name: "午後檸檬",
@@ -57,6 +66,15 @@ const menuData = {
       price: "NT$80",
       tag: null,
       image: "src\\POTATO PICTURE-02.jpg",
+      emoji: null
+    },
+    {
+      name: "潮汐花事",
+      nameJp: "鮪魚．薯泥．蛋．沙拉",
+      desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
+      price: "NT$100",
+      tag: null,
+      image: null,
       emoji: null
     },
     {
