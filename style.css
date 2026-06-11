@@ -1,5 +1,9 @@
 /* Force light mode regardless of system preference */
 :root { color-scheme: only light; }
+@media (prefers-color-scheme: dark) {
+  html { background: #F7F3EC; color: #1E1609; filter: none !important; }
+  :root { color-scheme: light; }
+}
 
 /* ─── CSS Variables ─── */
 :root {
