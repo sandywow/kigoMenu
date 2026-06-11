@@ -5,7 +5,7 @@ const menuData = {
       nameJp: "鮪魚．薯泥．蛋．沙拉",
       desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
       price: "NT$100",
-      tag: null,
+      tag: "新品嚐鮮.ᐟ.ᐟ",
       image: null,
       emoji: null
     },
@@ -73,7 +73,7 @@ const menuData = {
       nameJp: "鮪魚．薯泥．蛋．沙拉",
       desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
       price: "NT$100",
-      tag: null,
+      tag: "新品嚐鮮.ᐟ.ᐟ",
       image: null,
       emoji: null
     },
