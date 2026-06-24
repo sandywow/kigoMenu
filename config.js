@@ -84,7 +84,8 @@ const menuData = {
       price: "NT$120",
       tag: null,
       image: null,
-      emoji: null
+      emoji: null,
+      soldOut: true
     },
     {
       name: "淡烏龍芝士蛋糕",
@@ -93,7 +94,8 @@ const menuData = {
       price: "NT$180",
       tag: null,
       image: null,
-      emoji: null
+      emoji: null,
+      soldOut: true
     },
     {
       name: "重烏龍芝士蛋糕",
@@ -102,7 +104,8 @@ const menuData = {
       price: "NT$160",
       tag: null,
       image: null,
-      emoji: null
+      emoji: null,
+      soldOut: true
     }
   ],
   coffee: [
