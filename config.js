@@ -2,11 +2,11 @@ const menuData = {
   seasonal: [
     {
       name: "潮汐花事",
-      nameJp: "鮪魚．薯泥．蛋．沙拉",
+      nameJp: "鮪魚．鮭魚卵．薯泥．蛋．沙拉",
       desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
       price: "NT$100",
       tag: null,
-      image: null,
+      image: "src\\FISH PICTURE-03.jpg",
       emoji: null
     },
     {
@@ -14,7 +14,7 @@ const menuData = {
       nameJp: "薯泥．蛋．沙拉",
       desc: "一天的忙碌過後，來口清爽無負擔的薯泥\n卸下防備，偷得浮生半日閒",
       price: "NT$80",
-      tag: null,
+      tag: "蛋奶素",
       image: "src\\POTATO PICTURE-02.jpg",
       emoji: null
     },
@@ -64,17 +64,26 @@ const menuData = {
       nameJp: "薯泥．蛋．沙拉",
       desc: "一天的忙碌過後，來口清爽無負擔的薯泥\n卸下防備，偷得浮生半日閒",
       price: "NT$80",
-      tag: null,
+      tag: "蛋奶素",
       image: "src\\POTATO PICTURE-02.jpg",
       emoji: null
     },
     {
       name: "潮汐花事",
-      nameJp: "鮪魚．薯泥．蛋．沙拉",
+      nameJp: "鮪魚．鮭魚卵．薯泥．蛋．沙拉",
       desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
       price: "NT$100",
       tag: null,
-      image: null,
+      image: "src\\FISH PICTURE-03.jpg",
+      emoji: null
+    },
+    {
+      name: "享・ 阿芙加朵",
+      nameJp: "ESPRESSO AFFOGATO",
+      desc: "✦How to Enjoy✦\n① 淋上熱濃縮咖啡\n\n② 等待幾秒鐘\n\n③ 每一口，都同時品嚐咖啡與冰淇淋的風味",
+      price: "NT$150",
+      tag: null,
+      image: "src\\AFFOGATO PICTURE-04.jpg",
       emoji: null
     },
     {
@@ -261,7 +270,7 @@ const landingData = {
   cardPrice: "NT$100",
   cardTag: "限定",
   bannerLabel: null,
-  bannerImage: "src\\BANNER POTATO-02.jpg",
+  bannerImage: "src\\BANNER FISH-03.jpg",
   bannerAlt: "當季推薦海報",
   bannerPlaceholder: false,
   hideHero: true,
