@@ -522,7 +522,7 @@
         </label>
       </div>
       <div class="field">
-        <label>圖片網址 <span class="hint">（空白 = 顯示預設插圖）</span></label>
+        <label>單張圖片網址 <span class="hint">（空白 = 顯示預設插圖）</span></label>
         <input type="text" id="ld-heroImage" placeholder="留空則顯示預設插圖">
       </div>
       <div class="field">
@@ -614,6 +614,10 @@
       <div class="field">
         <label>圖片網址 <span class="hint">（空白 = 顯示佔位框或隱藏）</span></label>
         <input type="text" id="ld-bannerImage" placeholder="貼上圖片網址">
+      </div>
+      <div class="field">
+        <label>輪播圖片網址 <span class="hint">（每行一個，優先於單張圖片）</span></label>
+        <textarea id="ld-bannerImages" placeholder="src/BANNER FISH-03.jpg\nsrc/BANNER AFFOGATO-04.jpg"></textarea>
       </div>
       <div class="toggle-row">
         <span class="toggle-label">無圖時顯示灰色佔位框</span>
@@ -784,6 +788,7 @@ function populateLanding() {
     const el = document.getElementById('ld-' + k);
     if (el) el.value = ve(ld[k]);
   });
+  document.getElementById('ld-bannerImages').value = Array.isArray(ld.bannerImages) ? ld.bannerImages.filter(Boolean).join('\n') : '';
   document.getElementById('ld-showDate').checked          = !!ld.showDate;
   document.getElementById('ld-bannerPlaceholder').checked = !!ld.bannerPlaceholder;
   document.getElementById('ld-hideHero').checked           = !!ld.hideHero;
@@ -793,12 +798,20 @@ function populateLanding() {
 
 function readLanding() {
   const t = id => ne(document.getElementById('ld-' + id).value);
+  const multi = id => {
+    const value = document.getElementById('ld-' + id).value || '';
+    return value
+      .split(/\r?\n/)
+      .map(s => s.trim())
+      .filter(Boolean);
+  };
   return {
     cafeName:        t('cafeName'),
     cafeSub:         t('cafeSub'),
     showDate:        document.getElementById('ld-showDate').checked,
     dateSeasonLabel: t('dateSeasonLabel'),
     heroImage:       t('heroImage'),
+    bannerImages:    multi('bannerImages'),
     heroBadge:       t('heroBadge'),
     heroTitle:       t('heroTitle'),
     heroSubtitle:    t('heroSubtitle'),

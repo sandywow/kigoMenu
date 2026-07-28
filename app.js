@@ -140,7 +140,94 @@ function buildTabs() {
     bar.appendChild(btn);
   });
 }
+let bannerCarouselTimer = null;
+let bannerCarouselIndex = 0;
+let bannerCarouselImages = [];
 
+function clearBannerCarousel() {
+  if (bannerCarouselTimer) {
+    clearTimeout(bannerCarouselTimer);
+    bannerCarouselTimer = null;
+  }
+}
+
+function updateBannerDisplayHeight(bannerDisplay, img) {
+  if (!bannerDisplay || !img || !img.naturalWidth) return;
+  const width = bannerDisplay.clientWidth;
+  const height = Math.round((img.naturalHeight / img.naturalWidth) * width);
+  bannerDisplay.style.height = `${height}px`;
+}
+
+function scheduleBannerCarousel() {
+  clearBannerCarousel();
+  if (bannerCarouselImages.length < 2) return;
+  const delay = bannerCarouselIndex === 0 ? 7000 : 5000;
+  bannerCarouselTimer = setTimeout(() => {
+    renderBannerSlide(bannerCarouselIndex + 1);
+    scheduleBannerCarousel();
+  }, delay);
+}
+
+function renderBannerSlide(index, noFade) {
+  const bannerDisplay = document.getElementById('banner-display');
+  if (!bannerDisplay || !bannerCarouselImages.length) return;
+  bannerCarouselIndex = ((index % bannerCarouselImages.length) + bannerCarouselImages.length) % bannerCarouselImages.length;
+  const src = bannerCarouselImages[bannerCarouselIndex];
+  const dots = bannerCarouselImages.map((_, i) =>
+    `<button type="button" class="banner-carousel-dot${i === bannerCarouselIndex ? ' active' : ''}" data-index="${i}" aria-label="切換至第 ${i + 1} 張海報"></button>`
+  ).join('');
+
+  let dotsWrapper = bannerDisplay.querySelector('.banner-carousel-dots');
+  if (!dotsWrapper) {
+    dotsWrapper = document.createElement('div');
+    dotsWrapper.className = 'banner-carousel-dots';
+    dotsWrapper.setAttribute('aria-label', '海報輪播指示');
+    bannerDisplay.appendChild(dotsWrapper);
+  }
+  dotsWrapper.innerHTML = dots;
+
+  const previousSlide = bannerDisplay.querySelector('.banner-slide.visible');
+  const slide = document.createElement('div');
+  slide.className = 'banner-slide';
+  slide.dataset.slideIndex = bannerCarouselIndex;
+  slide.style.zIndex = previousSlide ? 2 : 1;
+  slide.innerHTML = `<img src="${src}" alt="${landingData.bannerAlt || '當季推薦'}">`;
+  bannerDisplay.insertBefore(slide, dotsWrapper);
+
+  const img = slide.querySelector('img');
+  if (img) {
+    if (img.complete && img.naturalWidth) {
+      updateBannerDisplayHeight(bannerDisplay, img);
+    } else {
+      img.addEventListener('load', () => updateBannerDisplayHeight(bannerDisplay, img), { once: true });
+    }
+  }
+
+  if (previousSlide) {
+    previousSlide.style.zIndex = 1;
+  }
+
+  if (noFade) {
+    slide.classList.add('visible');
+  } else {
+    setTimeout(() => slide.classList.add('visible'), 40);
+  }
+
+  if (previousSlide) {
+    setTimeout(() => {
+      if (previousSlide.parentNode) previousSlide.parentNode.removeChild(previousSlide);
+    }, 2600);
+  }
+
+  bannerDisplay.querySelectorAll('.banner-carousel-dot').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = Number(btn.dataset.index);
+      clearBannerCarousel();
+      renderBannerSlide(idx);
+      scheduleBannerCarousel();
+    });
+  });
+}
 /* ═══════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════ */
@@ -160,9 +247,9 @@ function initLanding() {
     hideEl('landing-date-line');
   }
 
-  /* ── Hero image (overrides SVG illustration when provided) ── */
+  /* ── Hero image (single image override) ── */
+  const heroVisual = document.getElementById('hero-visual');
   if (ld.heroImage) {
-    const heroVisual = document.getElementById('hero-visual');
     heroVisual.innerHTML = `<img class="hero-img" src="${ld.heroImage}" alt="${ld.heroTitle || '季節主視覺'}" loading="lazy">`;
   }
   setOrHide('hero-badge',    ld.heroBadge);
@@ -199,12 +286,17 @@ function initLanding() {
      bannerImage null + bannerPlaceholder false/null → 整區塊隱藏 */
   const bannerSection = document.getElementById('banner-section');
   const bannerDisplay = document.getElementById('banner-display');
-  if (ld.bannerImage) {
-    setOrHide('banner-label-text', ld.bannerLabel);
+  clearBannerCarousel();
+  bannerCarouselImages = Array.isArray(ld.bannerImages) ? ld.bannerImages.filter(Boolean) : [];
+  bannerCarouselIndex = 0;
+  setOrHide('banner-label-text', ld.bannerLabel);
+  if (bannerCarouselImages.length) {
+    renderBannerSlide(0, true);
+    scheduleBannerCarousel();
+  } else if (ld.bannerImage) {
     bannerDisplay.innerHTML =
       `<div class="banner-img-wrap"><img src="${ld.bannerImage}" alt="${ld.bannerAlt || '當季推薦'}"></div>`;
   } else if (ld.bannerPlaceholder) {
-    setOrHide('banner-label-text', ld.bannerLabel);
     bannerDisplay.innerHTML = `
       <div class="banner-placeholder">
         <div class="banner-placeholder-icon">🌿</div>

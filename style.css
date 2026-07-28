@@ -173,6 +173,47 @@ body::before {
   animation: floatY 6s ease-in-out infinite;
 }
 
+.hero-carousel-slide {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+
+.hero-carousel-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+.hero-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 252, 247, 0.8);
+  background: rgba(255, 252, 247, 0.45);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hero-carousel-dot.active {
+  background: var(--caramel);
+  transform: scale(1.1);
+}
+
+.hero-carousel-slide .hero-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
 /* Seasonal badge */
 .seasonal-badge {
   position: absolute;
@@ -395,11 +436,57 @@ body::before {
   overflow: hidden;
   border: 1px solid var(--beige);
 }
-.banner-img-wrap img {
+#banner-display {
+  position: relative;
   width: 100%;
+  min-height: 260px;
+  overflow: hidden;
+}
+.banner-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: opacity 2.5s ease;
+  background: var(--cream);
+}
+.banner-slide.visible {
+  opacity: 1;
+}
+.banner-slide img {
+  width: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
   filter: sepia(0.1) saturate(1.06) contrast(1.05) brightness(0.98);
+}
+.banner-carousel-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 10px;
+  z-index: 2;
+}
+.banner-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 252, 247, 0.8);
+  background: rgba(255, 252, 247, 0.45);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.banner-carousel-dot.active {
+  background: var(--caramel);
+  transform: scale(1.1);
 }
 .banner-placeholder {
   width: 100%;
