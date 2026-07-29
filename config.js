@@ -258,11 +258,7 @@ const landingData = {
   showDate: false,
   dateSeasonLabel: "Spring Menu",
   heroImage: null,
-  bannerImages: [
-    "src/BANNER FISH-03.jpg",
-    "src/BANNER AFFOGATO-04.jpg",
-    "src/POTATO PICTURE-02.jpg"
-  ],
+  bannerImages: ["src/BANNER FISH-03.jpg","src/BANNER AFFOGATO-04.jpg","src/BANNER POTATO-02.jpg"],
   heroBadge: "當季限定",
   heroTitle: "草莓千層酥",
   heroSubtitle: "本週限定 · 每日限量",
@@ -275,7 +271,7 @@ const landingData = {
   cardPrice: "NT$100",
   cardTag: "限定",
   bannerLabel: null,
-  bannerImage: "src\\BANNER FISH-03.jpg",
+  bannerImage: null,
   bannerAlt: "當季推薦海報",
   bannerPlaceholder: false,
   hideHero: true,

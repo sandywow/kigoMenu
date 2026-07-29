@@ -161,7 +161,7 @@ function updateBannerDisplayHeight(bannerDisplay, img) {
 function scheduleBannerCarousel() {
   clearBannerCarousel();
   if (bannerCarouselImages.length < 2) return;
-  const delay = bannerCarouselIndex === 0 ? 7000 : 5000;
+  const delay = 5000;
   bannerCarouselTimer = setTimeout(() => {
     renderBannerSlide(bannerCarouselIndex + 1);
     scheduleBannerCarousel();
