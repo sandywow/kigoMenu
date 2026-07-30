@@ -1,6 +1,15 @@
 const menuData = {
   seasonal: [
     {
+      name: "享・ 阿芙加朵",
+      nameJp: "ESPRESSO AFFOGATO",
+      desc: "✦How to Enjoy✦\n① 淋上熱濃縮咖啡\n\n② 等待幾秒鐘\n\n③ 每一口，都同時品嚐咖啡與冰淇淋的風味",
+      price: "NT$150",
+      tag: "新品嚐鮮.ᐟ.ᐟ",
+      image: "src\\AFFOGATO PICTURE-04.jpg",
+      emoji: null
+    },
+    {
       name: "潮汐花事",
       nameJp: "鮪魚．鮭魚卵．薯泥．蛋．沙拉",
       desc: "生活的起落，一如潮汐往返\n在海洋與薯泥的包容中，找回自己的節奏",
@@ -82,7 +91,7 @@ const menuData = {
       nameJp: "ESPRESSO AFFOGATO",
       desc: "✦How to Enjoy✦\n① 淋上熱濃縮咖啡\n\n② 等待幾秒鐘\n\n③ 每一口，都同時品嚐咖啡與冰淇淋的風味",
       price: "NT$150",
-      tag: null,
+      tag: "新品嚐鮮.ᐟ.ᐟ",
       image: "src\\AFFOGATO PICTURE-04.jpg",
       emoji: null
     },
@@ -258,7 +267,7 @@ const landingData = {
   showDate: false,
   dateSeasonLabel: "Spring Menu",
   heroImage: null,
-  bannerImages: ["src/BANNER FISH-03.jpg","src/BANNER AFFOGATO-04.jpg","src/BANNER POTATO-02.jpg"],
+  bannerImages: ["src/BANNER AFFOGATO-04.jpg","src/BANNER FISH-03.jpg","src/BANNER POTATO-02.jpg"],
   heroBadge: "當季限定",
   heroTitle: "草莓千層酥",
   heroSubtitle: "本週限定 · 每日限量",
@@ -282,7 +291,7 @@ const landingData = {
   footerLeft: "— since 2023 —",
   footerRight: null,
   menuTitle: "今日菜單",
-  menuSubtitle: "Spring 2026"
+  menuSubtitle: "Summer 2026"
 };
 
 const tabs = [
