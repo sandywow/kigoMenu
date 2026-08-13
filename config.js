@@ -1,9 +1,18 @@
 const menuData = {
   seasonal: [
     {
+      name: "莊園接骨木蘋果冰茶",
+      nameJp: null,
+      desc: "接骨木白花香揉合蘋果茶韻\n搭配特製果汁冰塊\n冰塊融化後風味更飽滿，微甜不膩 🌿.ᐟ.ᐟ",
+      price: "NT$150",
+      tag: "🍎新品嚐鮮🍎",
+      image: null,
+      emoji: null
+    },
+    {
       name: "享・ 阿芙加朵",
       nameJp: "ESPRESSO AFFOGATO",
-      desc: "✦How to Enjoy✦\n① 淋上熱濃縮咖啡\n\n② 等待幾秒鐘\n\n③ 每一口，都同時品嚐咖啡與冰淇淋的風味",
+      desc: "寫給盛夏的冰與火之歌：\n\n讓熱咖啡\n緩緩落進冰淇淋\n\n把最後一刻\n留給最剛好的相遇",
       price: "NT$150",
       tag: "新品嚐鮮.ᐟ.ᐟ",
       image: "src\\AFFOGATO PICTURE-04.jpg",
@@ -26,16 +35,6 @@ const menuData = {
       tag: "蛋奶素",
       image: "src\\POTATO PICTURE-02.jpg",
       emoji: null
-    },
-    {
-      name: "午後檸檬",
-      nameJp: null,
-      desc: "微酸剛好",
-      price: "NT$60",
-      tag: null,
-      image: "src/lemon cake-01.jpg",
-      emoji: null,
-      soldOut: false
     }
   ],
   dessert: [
@@ -89,7 +88,7 @@ const menuData = {
     {
       name: "享・ 阿芙加朵",
       nameJp: "ESPRESSO AFFOGATO",
-      desc: "✦How to Enjoy✦\n① 淋上熱濃縮咖啡\n\n② 等待幾秒鐘\n\n③ 每一口，都同時品嚐咖啡與冰淇淋的風味",
+      desc: "寫給盛夏的冰與火之歌：\n\n讓熱咖啡\n緩緩落進冰淇淋\n\n把最後一刻\n留給最剛好的相遇",
       price: "NT$150",
       tag: "新品嚐鮮.ᐟ.ᐟ",
       image: "src\\AFFOGATO PICTURE-04.jpg",
@@ -209,6 +208,16 @@ const menuData = {
       temp: "hot"
     },
     {
+      name: "莊園接骨木蘋果冰茶",
+      nameJp: null,
+      desc: "接骨木白花香揉合蘋果茶韻\n搭配特製果汁冰塊\n冰塊融化後風味更飽滿，微甜不膩 🌿.ᐟ.ᐟ",
+      price: "NT$150",
+      tag: "🍎新品嚐鮮🍎",
+      image: null,
+      emoji: null,
+      temp: "iced"
+    },
+    {
       name: "享．紅茶",
       nameJp: null,
       desc: null,
@@ -266,24 +275,19 @@ const landingData = {
   cafeSub: "享 · 奇果",
   showDate: false,
   dateSeasonLabel: "Spring Menu",
-  heroImage: null,
   bannerImages: ["src/BANNER AFFOGATO-04.jpg","src/BANNER FISH-03.jpg","src/BANNER POTATO-02.jpg"],
-  heroBadge: "當季限定",
-  heroTitle: "草莓千層酥",
-  heroSubtitle: "本週限定 · 每日限量",
   tagline: "˚₊‧꒰ა 享受生活應該是進行式 ໒꒱ ‧₊˚",
   taglineJp: "𝐿𝑖𝑓𝑒 𝑖𝑠 𝑎𝑙𝑙 𝑎𝑏𝑜𝑢𝑡 ℎ𝑎𝑣𝑖𝑛𝑔 𝑎 𝑔𝑜𝑜𝑑 𝑡𝑖𝑚𝑒.",
-  cardLabel: null,
-  cardName: "午後檸檬",
+  cardLabel: "夏日飲品新選擇🌿",
+  cardName: "莊園接骨木蘋果冰茶",
   cardNameJp: null,
-  cardDesc: "微酸剛好(⸝⸝¯ᵕ¯⸝⸝)🍋",
-  cardPrice: "NT$100",
-  cardTag: "限定",
+  cardDesc: "接骨木白花香揉合蘋果茶韻\n搭配特製果汁冰塊，微甜不膩🌿.ᐟ.ᐟ",
+  cardPrice: "NT$150",
+  cardTag: null,
   bannerLabel: null,
   bannerImage: null,
   bannerAlt: "當季推薦海報",
   bannerPlaceholder: false,
-  hideHero: true,
   hideCard: true,
   hideBanner: false,
   ctaButton: "今日菜單",
