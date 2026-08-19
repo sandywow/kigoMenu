@@ -1,12 +1,12 @@
 const menuData = {
   seasonal: [
     {
-      name: "莊園接骨木蘋果冰茶",
+      name: "莊園蘋果冰茶",
       nameJp: null,
       desc: "接骨木白花香揉合蘋果茶韻\n搭配特製果汁冰塊\n冰塊融化後風味更飽滿，微甜不膩 🌿.ᐟ.ᐟ",
       price: "NT$150",
       tag: "🍎新品嚐鮮🍎",
-      image: null,
+      image: "src\\apple iced tea PICTURE-05.jpg",
       emoji: null
     },
     {
@@ -208,12 +208,12 @@ const menuData = {
       temp: "hot"
     },
     {
-      name: "莊園接骨木蘋果冰茶",
+      name: "莊園蘋果冰茶",
       nameJp: null,
       desc: "接骨木白花香揉合蘋果茶韻\n搭配特製果汁冰塊\n冰塊融化後風味更飽滿，微甜不膩 🌿.ᐟ.ᐟ",
       price: "NT$150",
       tag: "🍎新品嚐鮮🍎",
-      image: null,
+      image: "src\\apple iced tea PICTURE-05.jpg",
       emoji: null,
       temp: "iced"
     },
@@ -275,7 +275,7 @@ const landingData = {
   cafeSub: "享 · 奇果",
   showDate: false,
   dateSeasonLabel: "Spring Menu",
-  bannerImages: ["src/BANNER AFFOGATO-04.jpg","src/BANNER FISH-03.jpg","src/BANNER POTATO-02.jpg"],
+  bannerImages: ["src/BANNER apple iced tea-05.jpg","src/BANNER AFFOGATO-04.jpg"],
   tagline: "˚₊‧꒰ა 享受生活應該是進行式 ໒꒱ ‧₊˚",
   taglineJp: "𝐿𝑖𝑓𝑒 𝑖𝑠 𝑎𝑙𝑙 𝑎𝑏𝑜𝑢𝑡 ℎ𝑎𝑣𝑖𝑛𝑔 𝑎 𝑔𝑜𝑜𝑑 𝑡𝑖𝑚𝑒.",
   cardLabel: "夏日飲品新選擇🌿",
